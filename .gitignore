@@ -101,3 +101,6 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
+# Application ignored files
+/docker/volumes
