@@ -33,7 +33,11 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // it is not a good idea to create a record without validating
+        Listing::create($request->all());
+
+        return redirect()->route('listing.index')
+            ->with('success', 'Listing was created');
     }
 
     /**
