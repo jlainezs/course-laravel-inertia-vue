@@ -16,9 +16,22 @@
       </Box>
       <Box>
         <template #header>
-          Offer
+          Monthly payment
         </template>
-        Make an offer
+        <div>
+          <label>Interest rate (2,5%)</label>
+          <input type="range" min="0.1" maxlength="30" step="0.1"
+                 class="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
+            />
+          <label>Duration (25 years)</label>
+          <input type="range" min="3" maxlength="35" step="1"
+                 class="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
+            />
+          <div class="text-gray-600 dark:text-gray-300 mt-2">
+            <div class="text-gray-400">Your monthly payment</div>
+            <Price :price="500" class="text-3xl" />
+          </div>
+        </div>
       </Box>
     </div>
   </div>
@@ -27,7 +40,7 @@
   import ListingAddress from "@/Components/ListingAddress.vue"
   import ListingSpace from "@/Components/ListingSpace.vue"
   import Price from "@/Components/Price.vue"
-  import Box from "@/Components/UI/Box.vue";
+  import Box from "@/Components/UI/Box.vue"
 
   defineProps({
     listing: Object
