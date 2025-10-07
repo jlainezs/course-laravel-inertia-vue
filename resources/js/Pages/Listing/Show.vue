@@ -19,17 +19,19 @@
           Monthly payment
         </template>
         <div>
-          <label>Interest rate (2,5%)</label>
-          <input type="range" min="0.1" maxlength="30" step="0.1"
+          <label>Interest rate ({{ interestRate }}%)</label>
+          <input type="range"
+                 min="0.1" maxlength="30" step="0.1" v-model.number="interestRate"
                  class="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
-          <label>Duration (25 years)</label>
-          <input type="range" min="3" maxlength="35" step="1"
+          <label>Duration ({{ duration }} years)</label>
+          <input type="range"
+                 min="3" maxlength="35" step="1" v-model.number="duration"
                  class="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
             />
           <div class="text-gray-600 dark:text-gray-300 mt-2">
             <div class="text-gray-400">Your monthly payment</div>
-            <Price :price="500" class="text-3xl" />
+            <Price :price="monthlyPayment" class="text-3xl" />
           </div>
         </div>
       </Box>
@@ -42,9 +44,23 @@
   import Price from "@/Components/Price.vue"
   import Box from "@/Components/UI/Box.vue"
 
-  defineProps({
+  import { ref, computed } from "vue"
+
+  const interestRate = ref(2.5)
+  const duration = ref(25)
+
+  const props = defineProps({
     listing: Object
   })
+
+  const monthlyPayment = computed(() => {
+    const principle = props.listing.price
+    const monthlyInterest = interestRate.value / 100 / 12
+    const numberOfPaymentMonths = duration.value * 12
+
+    return principle * monthlyInterest * (Math.pow(1 + monthlyInterest, numberOfPaymentMonths)) / (Math.pow(1 + monthlyInterest, numberOfPaymentMonths) - 1)
+  })
+
 </script>
 
 <style scoped>
