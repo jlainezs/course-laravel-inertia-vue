@@ -9,7 +9,7 @@ class AuthController extends Controller
     // receives any form
     public function create()
     {
-
+        return inertia('Auth/Login');
     }
 
     // create the session
