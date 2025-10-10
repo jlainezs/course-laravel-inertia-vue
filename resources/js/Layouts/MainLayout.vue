@@ -16,7 +16,7 @@
             + New Listing
           </Link>
           <div>
-            Logout
+            <Link :href="route('logout')" method="delete" as="button">Logout</Link>
           </div>
         </div>
         <div v-else>
