@@ -23,6 +23,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => Hash::make(Config::get('app.test_user_password')),
         ]);
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test2@example.com',
+            'password' => Hash::make(Config::get('app.test_user_password')),
+        ]);
         \App\Models\Listing::factory(20)->create([
             'by_user_id' => 1,
         ]);

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
+    //  Listing::make(['beds' => 2, 'baths' => 2, 'area' => 100, 'city' => 'North', 'street' => 'Tinker st.', 'street_nr' => 20, 'code' => 'TS', 'price' => 200_000])
+
     /**
      * Display a listing of the resource.
      */
