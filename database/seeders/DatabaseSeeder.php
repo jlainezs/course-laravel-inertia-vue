@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Listing;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Config;
@@ -22,6 +23,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => Hash::make(Config::get('app.test_user_password')),
         ]);
-        \App\Models\Listing::factory(20)->create();
+        \App\Models\Listing::factory(20)->create([
+            'by_user_id' => 1,
+        ]);
     }
 }
