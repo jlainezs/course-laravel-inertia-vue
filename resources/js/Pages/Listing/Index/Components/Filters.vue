@@ -30,7 +30,7 @@
                class="input-filter-r w-28"/>
       </div>
       <button type="submit" class="btn-normal">Filter</button>
-      <button type="reset" @click="reset">Clear</button>
+      <button type="reset" @click="clear">Clear</button>
     </div>
   </form>
 </template>
@@ -53,12 +53,12 @@ const filter = () => {
   )
 }
 const clear = () => {
-  filrerForm.priceFrom = null
-  filrerForm.priceTo = null
-  filrerForm.beds = null
-  filrerForm.baths = null
-  filrerForm.areaFrom = null
-  filrerForm.areaTo =  null
+  filterForm.priceFrom = null
+  filterForm.priceTo = null
+  filterForm.beds = null
+  filterForm.baths = null
+  filterForm.areaFrom = null
+  filterForm.areaTo =  null
   filter()
 }
 const filterForm = useForm({
