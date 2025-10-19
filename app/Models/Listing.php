@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Builder;
-// use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+
 class Listing extends Model
 {
     use HasFactory;
@@ -20,11 +21,13 @@ class Listing extends Model
         return $this->belongsTo(\App\Models\User::class, 'by_user_id');
     }
 
-    public function scopeMostRecent(Builder $query):Builder {
+    #[Scope]
+    protected function mostRecent(Builder $query):Builder {
         return $query->latest();
     }
 
-    public function scopeFilter(Builder $query, array $filters):Builder {
+    #[Scope]
+    protected function filter(Builder $query, array $filters):Builder {
         return $query->when(
             $filters['priceFrom'] ?? false,
             fn ($query, $value) => $query->where('price', '>=', $value)
