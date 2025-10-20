@@ -19,6 +19,7 @@ class Listing extends Model
     protected array $sortable = [
         'price', 'created_at',
     ];
+    protected array $sortDirections = ['asc', 'desc'];
 
     public function owner(): BelongsTo
     {
@@ -56,7 +57,12 @@ class Listing extends Model
         )->when(
             $filters['by'] ?? false,
             fn ($query, $value) =>
-            !in_array($value, $this->sortable) ? $query : $query->orderBy($value, $filters['order'] ?? 'desc')
+            !in_array($value, $this->sortable)
+                ? $query
+                : $query->orderBy(
+                    $value,
+                !in_array($filters['order'], $this->sortDirections) ? 'desc' : $filters['order']
+            )
         );
     }
 }
