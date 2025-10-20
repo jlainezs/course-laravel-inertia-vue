@@ -10,11 +10,19 @@ use Throwable;
 
 class RealtorListingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $filters = [
+            'deleted' => $request->boolean('deleted'),
+        ];
         return inertia(
             'Realtor/Index',
-            ['listings' => Auth::user()->listings],
+            ['listings' => Auth::user()
+                ->listings()
+                ->mostRecent()
+                ->filter($filters)
+                ->get()
+            ],
         );
     }
 
