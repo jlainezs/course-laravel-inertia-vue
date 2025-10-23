@@ -36,5 +36,5 @@ Route::prefix('realtor')
             ->withTrashed();
 
         Route::resource('listing.image', RealtorListingImageController::class)
-            ->only(['create', 'store']);
+            ->only(['create', 'store', 'destroy']);
     });
