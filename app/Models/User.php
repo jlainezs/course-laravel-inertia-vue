@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->hasMany(\App\Models\Listing::class, 'by_user_id');
     }
 
+    public function offers(): HasMany
+    {
+        return $this->hasMany(\App\Models\Offer::class, 'bidder_id');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
