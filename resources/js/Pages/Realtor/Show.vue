@@ -9,8 +9,13 @@
         No offers
       </div>
     </Box>
-    <div v-else class="flex md:col-span-7 item-center">
-      This is displayed when there are offers.
+    <div v-else class="md:col-span-7 item-center">
+      <Offer
+        v-for="offer in listing.offers"
+        :offer="offer"
+        :listing-price="listing.price"
+        :key="offer.id"
+        class="mb-4" />
     </div>
     <Box class="md:col-span-5">
       <template #header>Basic Info</template>
@@ -23,12 +28,13 @@
 
 <script setup>
 
-import {Link} from "@inertiajs/vue3";
-import {computed} from "vue";
-import Box from "@/Components/UI/Box.vue";
-import Price from "@/Components/Price.vue";
-import ListingSpace from "@/Components/ListingSpace.vue";
-import ListingAddress from "@/Components/ListingAddress.vue";
+import {Link} from "@inertiajs/vue3"
+import {computed} from "vue"
+import Box from "@/Components/UI/Box.vue"
+import Price from "@/Components/Price.vue"
+import ListingSpace from "@/Components/ListingSpace.vue"
+import ListingAddress from "@/Components/ListingAddress.vue"
+import Offer from "@/Pages/Realtor/Show/Components/Offer.vue"
 
 const props = defineProps({
   listing: Object
