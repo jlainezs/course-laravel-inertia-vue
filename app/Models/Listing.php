@@ -43,6 +43,17 @@ class Listing extends Model
     }
 
     #[Scope]
+    protected function withoutSold(Builder $query): Builder
+    {
+        return $query->doesntHave('offers')
+            ->orWhereHas(
+                'offers',
+                fn(Builder $query) => $query->whereNull('accepted_at')
+                    ->whereNull('rejected_at')
+            );
+    }
+
+    #[Scope]
     protected function filter(Builder $query, array $filters):Builder {
         return $query->when(
             $filters['priceFrom'] ?? false,
