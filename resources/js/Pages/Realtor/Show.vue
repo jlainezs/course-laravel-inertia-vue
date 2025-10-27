@@ -14,6 +14,7 @@
         v-for="offer in listing.offers"
         :offer="offer"
         :listing-price="listing.price"
+        :is-sold="listing.sold_at != null"
         :key="offer.id"
       />
     </div>
