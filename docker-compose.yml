@@ -16,3 +16,8 @@ services:
             --collation-server=utf8mb4_unicode_ci
         volumes:
             - ./docker/volumes/db_data:/var/lib/mysql
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - "1025:1025"
+            - "8025:8025"
