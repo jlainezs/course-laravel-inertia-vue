@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Listing;
 use App\Policies\ListingPolicy;
+use App\Policies\NotificationPolicy;
 use Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('delete', [ListingPolicy::class, 'delete']);
         Gate::define('restore', [ListingPolicy::class, 'restore']);
         Gate::define('forceDelete', [ListingPolicy::class, 'forceDelete']);
+
+        Gate::define('update', [NotificationPolicy::class, 'update']);
     }
 }
